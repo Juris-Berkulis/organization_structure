@@ -94,7 +94,7 @@ export default {
 
 <template>
 <div
-    class="department"
+    :class="['department', {department__last: !department.children?.length}]"
     v-for="department in departmentsList"
     :key="department.name"
     @drop="event => onDrop(event, department)"
@@ -120,6 +120,9 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+.department__last {
     padding: 0 20px;
 }
 
