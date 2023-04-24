@@ -1,4 +1,6 @@
-export const orgStructure = [
+const fs = require("fs");
+
+const orgStructure = [
     {
         name: "Руководство",
         children: [
@@ -30,3 +32,6 @@ export const orgStructure = [
         ],
     },
 ];
+
+fs.writeFileSync("./src/data/orgStructure.json", JSON.stringify(orgStructure, null, 4));
+//* - Команда для запуска: "node ./src/data/orgStructure.js".
