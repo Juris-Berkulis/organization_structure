@@ -1,6 +1,6 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import DepartmentInOrganization from './DragAndDrop03/DepartmentInOrganization.vue';
+import DepartmentInOrganization from './DepartmentInOrganization.vue';
 
 export default {
     components: {
