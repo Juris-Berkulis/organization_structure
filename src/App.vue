@@ -1,15 +1,23 @@
 <script>
-export default {
+import DragAndDrop from './components/DragAndDrop.vue';
 
+export default {
+  components: {
+    DragAndDrop,
+  },
 }
 </script>
 
 <template>
-<div>
-
+<div class="app">
+  <div>
+    <DragAndDrop></DragAndDrop>
+  </div>
 </div>
 </template>
 
 <style scoped>
-
+.app {
+  padding: 15px;
+}
 </style>
