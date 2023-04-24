@@ -1,7 +1,6 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import DepartmentInOrganization from './DragAndDrop03/DepartmentInOrganization.vue';
-import {orgStructure} from '../data/orgStructure';
 
 export default {
     components: {
@@ -10,30 +9,48 @@ export default {
     computed: {
         ...mapState({
             organizationStructureData: (state) => state.moduleOrgStructure.organizationStructureData,
+            organizationStructureLoading: (state) => state.moduleOrgStructure.organizationStructureLoading,
         }),
     },
     methods: {
         ...mapActions({
             setOrganizationStructureData: 'moduleOrgStructure/setOrganizationStructureData',
+            setOrganizationStructureLoading: 'moduleOrgStructure/setOrganizationStructureLoading',
         }),
+        async fetchOrgStructure () {
+            try {
+                const response = await fetch(`https://raw.githubusercontent.com/Juris-Berkulis/organization_structure/main/src/data/orgStructure.json`);
+
+                if (response.ok) {
+                    this.setOrganizationStructureData(await response.json());
+                } else {
+                    throw {message: `Ошибка HTTP: ${response.status}`}
+                }
+            } catch (error) {
+                alert(error.message);
+            } finally {
+                this.setOrganizationStructureLoading(false);
+            }
+        },
     },
-    mounted () {
-        this.setOrganizationStructureData(orgStructure)
+    async mounted () {
+        await this.fetchOrgStructure();
     },
 }
 </script>
 
 <template>
-<div class="DragAndDrop03">
+<div class="DragAndDrop" v-if="!organizationStructureLoading">
     <DepartmentInOrganization
         v-bind:departmentsList="organizationStructureData"
         v-bind:draggable="false"
     ></DepartmentInOrganization>
 </div>
+<BaseLoader v-else></BaseLoader>
 </template>
 
 <style scoped>
-.DragAndDrop03 {
+.DragAndDrop {
     padding: 30px;
 }
 </style>

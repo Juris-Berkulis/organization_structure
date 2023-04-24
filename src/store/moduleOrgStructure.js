@@ -2,6 +2,7 @@ export const moduleOrgStructure = {
     namespaced: true,
     state: () => ({
         organizationStructureData: [],
+        organizationStructureLoading: true,
     }),
     getters: {
 
@@ -10,10 +11,16 @@ export const moduleOrgStructure = {
         setOrganizationStructureDataMutation(state, organizationStructureData) {
             state.organizationStructureData = organizationStructureData;
         },
+        setOrganizationStructureLoadingMutation(state, organizationStructureLoading) {
+            state.organizationStructureLoading = organizationStructureLoading;
+        },
     },
     actions: {
         setOrganizationStructureData({commit}, organizationStructureData) {
             commit('setOrganizationStructureDataMutation', organizationStructureData);
+        },
+        setOrganizationStructureLoading({commit}, organizationStructureLoading) {
+            commit('setOrganizationStructureLoadingMutation', organizationStructureLoading);
         },
     },
 };
