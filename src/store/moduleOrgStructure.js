@@ -18,6 +18,7 @@ export const moduleOrgStructure = {
     actions: {
         setOrganizationStructureData({commit}, organizationStructureData) {
             commit('setOrganizationStructureDataMutation', organizationStructureData);
+            localStorage.setItem('organizationStructureData', JSON.stringify(organizationStructureData));
         },
         setOrganizationStructureLoading({commit}, organizationStructureLoading) {
             commit('setOrganizationStructureLoadingMutation', organizationStructureLoading);

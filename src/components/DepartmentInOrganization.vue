@@ -68,7 +68,6 @@ export default {
                 addSubvisionFromOldSeniorDepartment(subdivisionsList);
 
                 this.setOrganizationStructureData(subdivisionsList);
-                console.log(this.organizationStructureData);
             }
 
             searchDepartmentInOrganization(this.organizationStructureData);

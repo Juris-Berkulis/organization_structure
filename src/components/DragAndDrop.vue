@@ -33,8 +33,23 @@ export default {
             }
         },
     },
+    watch: {
+        organizationStructureData: {
+            handler(value) {
+                console.log(value);
+            },
+            deep: true
+        },
+    },
     async mounted () {
-        await this.fetchOrgStructure();
+        const organizationStructure = JSON.parse(localStorage.getItem('organizationStructureData'));
+    
+        if (organizationStructure) {
+            this.setOrganizationStructureData(organizationStructure);
+            this.setOrganizationStructureLoading(false);
+        } else {
+            await this.fetchOrgStructure();
+        }
     },
 }
 </script>
