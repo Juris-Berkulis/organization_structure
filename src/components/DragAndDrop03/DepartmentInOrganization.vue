@@ -23,17 +23,11 @@ export default {
         onDrop (event, department) {
             event.stopPropagation();
 
-            console.log('222')
-            console.log(department)
-
             const subdivision = JSON.parse(event.dataTransfer.getData('department'));
 
             if (!subdivision || department.name === subdivision.name) {
                 return
             }
-
-            console.log('333')
-            console.log(subdivision)
 
             const searchDepartmentInOrganization = (subdivisionsList) => {
                 const deleteSubvisionFromOldSeniorDepartment = (auditedDepartment) => {
@@ -74,15 +68,13 @@ export default {
                 addSubvisionFromOldSeniorDepartment(subdivisionsList);
 
                 this.setOrganizationStructureData(subdivisionsList);
+                console.log(this.organizationStructureData);
             }
 
             searchDepartmentInOrganization(this.organizationStructureData);
         },
         onDragStart (event, department, draggable) {
             event.stopPropagation();
-            
-            console.log('111')
-            console.log(department)
 
             event.dataTransfer.dropEffect = 'move';
             event.dataTransfer.effectAllowed = 'move';
