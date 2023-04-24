@@ -103,7 +103,12 @@ export default {
     @dragstart="event => onDragStart(event, department, draggable)"
     :draggable="draggable"
 >
-    <p :class="['department__title', {department__title__last: !department.children?.length}]">{{ department.name }}</p>
+    <div class="line line__horizontal"></div>
+    <div class="department__titleWrapper">
+        <p :class="['department__title', {department__title__last: !department.children?.length}]">{{ department.name }}</p>
+        <div :class="['line', 'line__vertical', 'line__vertical__top', {line__vertical__top__root: !draggable}]"></div>
+        <div :class="['line', 'line__vertical', 'line__vertical__bottom', {line__vertical__bottom__last: !department.children?.length}]"></div>
+    </div>
     <div class="department__subordinateDepartmentsList" v-if="department.children?.length">
         <DepartmentInOrganization v-bind:departmentsList="department.children"></DepartmentInOrganization>
     </div>
@@ -112,21 +117,80 @@ export default {
 
 <style scoped>
 .department {
+    position: relative;
     display: flex;
     flex-direction: column;
-    margin: 0 10px;
+    padding: 0 20px;
+}
+
+.department:active .line {
+    display: none;
+}
+
+.line__horizontal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: black;
+}
+
+.department:nth-child(1) > .line__horizontal {
+    left: auto;
+    right: 0;
+    width: 50%;
+}
+
+.department:last-child > .line__horizontal {
+    width: 50%;
+}
+
+.department:only-child > .line__horizontal {
+    display: none;
+}
+
+.department__titleWrapper {
+    position: relative;
+    padding: 20px 0;
 }
 
 .department__title {
     width: fit-content;
-    margin: 0 auto 30px;
+    margin: 0 auto;
     padding: 10px;
     text-align: center;
     border: 2px solid black;
+    white-space: nowrap;
 }
 
 .department__title__last {
     margin-bottom: 0;
+}
+
+.line__vertical {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    width: 2px;
+    background-color: black;
+}
+
+.line__vertical__top {
+    top: 0;
+}
+
+.line__vertical__top__root {
+    display: none;
+}
+
+.line__vertical__bottom {
+    bottom: 0;
+}
+
+.line__vertical__bottom__last {
+    display: none;
 }
 
 .department__subordinateDepartmentsList {
