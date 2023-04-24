@@ -157,6 +157,7 @@ export default {
     text-align: center;
     border: 2px solid black;
     white-space: nowrap;
+    background-color: #77cc77;
 }
 
 .department__title__last {
