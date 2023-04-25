@@ -25,22 +25,19 @@ export default {
 
             const subdivision = JSON.parse(event.dataTransfer.getData('department'));
 
-            let isFindDepartmentInSubdivision = false;
-
             const findDepartmentInSubdivision = (movedSubdivisions) => {
                 for (let index = 0; index < movedSubdivisions?.children?.length; index++) {
                     if (movedSubdivisions.children[index].name === department.name) {
-                        isFindDepartmentInSubdivision = true;
-                        return
+                        return true
                     } else if (movedSubdivisions.children[index].children?.length) {
-                        findDepartmentInSubdivision(movedSubdivisions.children[index]);
+                        return findDepartmentInSubdivision(movedSubdivisions.children[index]);
                     }
                 }
+
+                return false
             };
 
-            findDepartmentInSubdivision(subdivision);
-
-            if (!subdivision || department.name === subdivision.name || isFindDepartmentInSubdivision) {
+            if (!subdivision || department.name === subdivision.name || findDepartmentInSubdivision(subdivision)) {
                 return
             }
 
