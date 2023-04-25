@@ -24,9 +24,6 @@ const orgStructure = [
                     {
                         name: "Отдел 6",
                     },
-                    {
-                        name: "Отдел 444",
-                    },
                 ],
             },
             {
