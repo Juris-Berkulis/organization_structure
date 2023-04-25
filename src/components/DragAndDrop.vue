@@ -66,6 +66,7 @@ export default {
 
 <style scoped>
 .DragAndDrop {
+    width: fit-content;
     padding: 30px;
 }
 </style>

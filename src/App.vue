@@ -10,7 +10,7 @@ export default {
 
 <template>
 <div class="app">
-  <div>
+  <div class="app__dragAndDropWrapper">
     <DragAndDrop></DragAndDrop>
   </div>
 </div>
@@ -19,5 +19,11 @@ export default {
 <style scoped>
 .app {
   padding: 15px;
+}
+
+.app__dragAndDropWrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
 </style>

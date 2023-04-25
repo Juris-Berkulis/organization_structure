@@ -34,4 +34,4 @@ const orgStructure = [
 ];
 
 fs.writeFileSync("./src/data/orgStructure.json", JSON.stringify(orgStructure, null, 4));
-//* - Команда для запуска: "node ./src/data/orgStructure.js".
+//* - Команда для копирования данных в json-файл: "node ./src/data/orgStructure.js".
