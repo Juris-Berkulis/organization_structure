@@ -25,5 +25,7 @@ export default {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  display: flex;
+  justify-content: center;
 }
 </style>
