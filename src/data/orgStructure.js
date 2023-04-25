@@ -24,6 +24,9 @@ const orgStructure = [
                     {
                         name: "Отдел 6",
                     },
+                    {
+                        name: "Отдел 444",
+                    },
                 ],
             },
             {
@@ -34,4 +37,4 @@ const orgStructure = [
 ];
 
 fs.writeFileSync("./src/data/orgStructure.json", JSON.stringify(orgStructure, null, 4));
-//* - Команда для копирования данных в json-файл: "node ./src/data/orgStructure.js" (после выполнения команды и деплоя необходимо сбросить значение в LocalStorage браузера).
+//* - Команда для копирования данных в json-файл: "node ./src/data/orgStructure.js" (после выполнения команды и коммита необходимо сбросить значение в LocalStorage браузера).
