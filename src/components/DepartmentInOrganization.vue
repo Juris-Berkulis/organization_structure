@@ -25,7 +25,22 @@ export default {
 
             const subdivision = JSON.parse(event.dataTransfer.getData('department'));
 
-            if (!subdivision || department.name === subdivision.name) {
+            let isFindDepartmentInSubdivision = false;
+
+            const findDepartmentInSubdivision = (movedSubdivisions) => {
+                for (let index = 0; index < movedSubdivisions?.children?.length; index++) {
+                    if (movedSubdivisions.children[index].name === department.name) {
+                        isFindDepartmentInSubdivision = true;
+                        return
+                    } else if (movedSubdivisions.children[index].children?.length) {
+                        findDepartmentInSubdivision(movedSubdivisions.children[index]);
+                    }
+                }
+            };
+
+            findDepartmentInSubdivision(subdivision);
+
+            if (!subdivision || department.name === subdivision.name || isFindDepartmentInSubdivision) {
                 return
             }
 
@@ -45,7 +60,7 @@ export default {
                             deleteSubvisionFromOldSeniorDepartment(auditedSubdivisionsList[index]);
                         }
                     }
-                }
+                };
 
                 deleteSubvisionFromOldSeniorDepartment(...subdivisionsList);
 
@@ -63,7 +78,7 @@ export default {
                             addSubvisionFromOldSeniorDepartment(subdivisionsList[index].children);
                         }
                     }
-                }
+                };
 
                 addSubvisionFromOldSeniorDepartment(subdivisionsList);
 
