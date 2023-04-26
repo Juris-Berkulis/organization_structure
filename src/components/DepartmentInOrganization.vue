@@ -28,7 +28,7 @@ export default {
             let isFindDepartmentInSubdivision = false;
 
             const findDepartmentInSubdivision = (movedSubdivisions) => {
-                for (let index = 0; index < movedSubdivisions?.children?.length; index++) {
+                for (let index = 0; index < movedSubdivisions?.children?.length && !isFindDepartmentInSubdivision; index++) {
                     if (movedSubdivisions.children[index].name === department.name) {
                         isFindDepartmentInSubdivision = true;
                         return
